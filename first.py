@@ -3,9 +3,9 @@ import pandas as pd
 import json
 
 # Color palette
-BACKGROUND_COLOR = "#008B8B"     # DarkCyan
-PRIMARY_COLOR = "#008B8B"     # DarkCyan
-SECONDARY_COLOR = "#008B8B"     # DarkCyan
+BACKGROUND_COLOR = "#F0F8FA"  # Light background (AliceBlue)
+PRIMARY_COLOR = "#5F9EA0"  # CadetBlue
+SECONDARY_COLOR = "#2F4F4F"  # DarkSlateGray
 ACCENT_COLOR = "#008B8B"     # DarkCyan
 
 # Set background color for the entire app (improved)
@@ -30,20 +30,21 @@ st.markdown(f"""
             color: {ACCENT_COLOR} !important;
         }}
 
-        /* Target the file uploader */
-        .stFileUploader {{
-            background-color: white !important; /* Example: White background for uploader */
-            border: 1px solid {PRIMARY_COLOR} !important;
-            padding: 10px !important;
+        /* Target the file uploader (less reliable, try first) */
+        .stFileUploader > div:nth-child(1) {{
+            background-color: transparent !important;
         }}
-
-        /* Style the stSelectbox (if you use one) */
-        .stSelectbox {{
-             background-color: white !important;
-             border: 1px solid {PRIMARY_COLOR} !important;
+        .stFileUploader > div:nth-child(1) > div {{
+            background-color: transparent !important;
         }}
     </style>
 """, unsafe_allow_html=True)
+
+# Inject Custom CSS (more reliable)
+st.markdown(f"""<link rel="stylesheet" href="style.css">""", unsafe_allow_html=True)
+
+# Inject Custom JavaScript (more reliable)
+st.markdown(f"""<script src="script.js"></script>""", unsafe_allow_html=True)
 
 
 st.title("CSV/JSON File Viewer")
@@ -66,22 +67,22 @@ if uploaded_file is not None:
             st.dataframe(df)
 
         elif file_extension == "json":
-             try:
+            try:
                 # Attempt to read as a list of dictionaries (common JSON format)
                 data = json.load(uploaded_file)
                 df = pd.DataFrame(data)  # Convert to DataFrame for easier display
                 st.write("## JSON Data")
                 st.dataframe(df)
 
-             except ValueError:
+            except ValueError:
                 try:
                     # Attempt to read as a single dictionary
                     data = json.load(uploaded_file)
                     st.write("## JSON Data")
-                    st.write(data) # Display the raw JSON data
+                    st.write(data)  # Display the raw JSON data
                 except json.JSONDecodeError:
                     st.error("Invalid JSON format.  Please ensure your JSON is correctly formatted.")
-                    
+
         else:
             st.error("Unsupported file type. Please upload a CSV or JSON file.")
 
