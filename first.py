@@ -3,7 +3,7 @@ import pandas as pd
 import json
 
 # Color palette
-BACKGROUND_COLOR = "#F0F8FA"  # Light background (AliceBlue)
+BACKGROUND_COLOR = "#008B8B"     # DarkCyan
 PRIMARY_COLOR = "#5F9EA0"  # CadetBlue
 SECONDARY_COLOR = "#2F4F4F"  # DarkSlateGray
 ACCENT_COLOR = "#008B8B"     # DarkCyan
