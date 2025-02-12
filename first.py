@@ -8,33 +8,46 @@ PRIMARY_COLOR = "#5F9EA0"  # CadetBlue
 SECONDARY_COLOR = "#2F4F4F"  # DarkSlateGray
 ACCENT_COLOR = "#008B8B"     # DarkCyan
 
-# Set background color for the entire app
-st.set_page_config(page_title="File Viewer", page_icon=":file_folder:", layout="wide") #wide makes it more responsive
+# Set background color for the entire app (improved)
+st.set_page_config(page_title="File Viewer", page_icon=":file_folder:", layout="wide")
+
+# Use st.markdown with unsafe_allow_html=True for more control
 st.markdown(f"""
     <style>
         body {{
-            background-color: {BACKGROUND_COLOR};
-            color: {SECONDARY_COLOR}; /* Default text color */
+            background-color: {BACKGROUND_COLOR} !important; /* !important is crucial */
+            color: {SECONDARY_COLOR} !important; /* Default text color */
         }}
         .stButton>button {{
-            background-color: {PRIMARY_COLOR};
-            color: white;
+            background-color: {PRIMARY_COLOR} !important;
+            color: white !important;
         }}
         .stDataFrame {{ /* Style for DataFrames */
-            border: 1px solid {PRIMARY_COLOR};
+            border: 1px solid {PRIMARY_COLOR} !important;
         }}
 
         h1, h2, h3 {{
-            color: {ACCENT_COLOR};
+            color: {ACCENT_COLOR} !important;
         }}
 
+        /* Target the file uploader */
+        .stFileUploader {{
+            background-color: white !important; /* Example: White background for uploader */
+            border: 1px solid {PRIMARY_COLOR} !important;
+            padding: 10px !important;
+        }}
+
+        /* Style the stSelectbox (if you use one) */
+        .stSelectbox {{
+             background-color: white !important;
+             border: 1px solid {PRIMARY_COLOR} !important;
+        }}
     </style>
 """, unsafe_allow_html=True)
 
 
-
 st.title("CSV/JSON File Viewer")
-st.subheader("Visualize your data files with ease.") # Subtitle added
+st.subheader("Visualize your data files with ease.")
 
 # GitHub Link
 github_repo_url = "https://github.com/leo8599/TOPICOS_GBBDD"
