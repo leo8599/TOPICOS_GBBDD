@@ -4,8 +4,8 @@ import json
 
 # Color palette
 BACKGROUND_COLOR = "#008B8B"     # DarkCyan
-PRIMARY_COLOR = "#5F9EA0"  # CadetBlue
-SECONDARY_COLOR = "#2F4F4F"  # DarkSlateGray
+PRIMARY_COLOR = "#008B8B"     # DarkCyan
+SECONDARY_COLOR = "#008B8B"     # DarkCyan
 ACCENT_COLOR = "#008B8B"     # DarkCyan
 
 # Set background color for the entire app (improved)
